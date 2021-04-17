@@ -7,8 +7,8 @@ export const myfunc=(req,res)=>
 
 res.writeHead(200,{"Content-Types":"text/html"})
 const queryObject = url.parse(req.url,true).query;
-console.log(queryObject);
-var route=url.parse(req.url,true).pathname;
+console.log(queryObject);                       // store query in object
+var route=url.parse(req.url,true).pathname;     // extract pathname
 
 //routes 
 

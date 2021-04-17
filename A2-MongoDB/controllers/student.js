@@ -23,6 +23,8 @@ student1.save()
 //for /getStudentDetails (get) to getting studing by 
 export const getStudent = (req,res)=>
 {
+    if(req.query.name)
+    {
     Student.aggregate(
         [{$match:{studentFirstName : req.query.name }}]
     )
@@ -30,4 +32,16 @@ export const getStudent = (req,res)=>
            (result)=>{res.send(result)}
         )
     .catch((err)=>{console.log(err)})
+    }
+
+    else
+    {
+        Student.aggregate(
+            [{$sort:{studentFirstName : 1}}]
+        )
+        .then(
+               (result)=>{res.send(result)}
+            )
+        .catch((err)=>{console.log(err)})
+    }
 }
